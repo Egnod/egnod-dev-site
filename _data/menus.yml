@@ -2,15 +2,10 @@
   url: /
   external: false
 
-- title: about
-  url: /about/
-  external: false
+- title: github
+  url: https://github.com/egnod
+  external: true
 
-- title: notes
-  url: /notes/
-  external: false # set true if you using external link, see bellow
-
-# Example:
-# - title: github
-#   url: https://github.com/piharpi/jekyll-klise
-#   external: true
+- title: twitter
+  url: https://twitter.com/egnodus
+  external: true
