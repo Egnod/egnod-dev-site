@@ -6,6 +6,10 @@
   url: assets/resume.pdf
   external: true
 
+- title: link shortener
+  url: https://links.egnod.dev
+  external: true
+
 - title: github
   url: https://github.com/egnod
   external: true
