@@ -5,6 +5,10 @@
 - title: resume
   url: assets/resume.pdf
   external: true
+  
+- title:
+  url: https://keybase.io/egnod
+  external: true
 
 - title: linkedin
   url: https://www.linkedin.com/in/aleksander-lavrov-52283b19b
