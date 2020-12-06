@@ -3,7 +3,7 @@
   external: false
 
 - title: resume
-  url: assets/resume.pdf
+  url: https://egnod.keybase.pub/resume.pdf
   external: true
   
 - title: keybase
