@@ -14,6 +14,10 @@
   url: https://dev.to/egnod
   external: true
 
+- title: medium
+  url: https://egnod.medium.com/
+  external: true
+
 - title: keybase
   url: https://keybase.io/egnod
   external: true
