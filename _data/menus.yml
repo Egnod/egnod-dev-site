@@ -5,27 +5,23 @@
 - title: resume
   url: https://egnod.keybase.pub/resume.pdf
   external: true
-  
-- title: keybase
-  url: https://keybase.io/egnod
-  external: true
-
-- title: linkedin
-  url: https://www.linkedin.com/in/aleksander-lavrov-52283b19b
-  external: true
 
 - title: habr
   url: https://habr.com/ru/users/egnodus/posts/
   external: true
 
+- title: dev.to
+  url: https://dev.to/egnod
+  external: true
+
 - title: github
   url: https://github.com/egnod
   external: true
-
-- title: twitter
-  url: https://twitter.com/egnodus
+  
+  - title: keybase
+  url: https://keybase.io/egnod
   external: true
 
-- title: notes
-  url: https://notes.egnod.dev
+- title: linkedin
+  url: https://www.linkedin.com/in/aleksander-lavrov-52283b19b
   external: true
