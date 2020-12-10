@@ -261,8 +261,8 @@
 
 // Footer
 .footer {
-  margin-top: 8em;
-  margin-bottom: 2em;
+  margin: 0 auto;
+  bottom: 0;
   text-align: center;
 
   @include media-query($on-mobile) {
