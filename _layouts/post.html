@@ -37,7 +37,11 @@ layout: compress
             <time hidden datetime="{{ page.modified | date_to_xmlschema }}" itemprop="dateModified">
               {{ page.date | date: "%b %d, %Y" }}
             </time>
-            <span hidden itemprop="publisher" itemtype="Person">{{ site.author.name }}</span>
+            {% if page.external_link and page.external_link_name %}
+              <span itemprop="publisher" itemtype="Organization"><a href="{{page.external_link}}">{{page.external_link_name}}</a></span>
+            {% else %}
+              <span hidden itemprop="publisher" itemtype="Person">{{ site.author.name }}</span>
+            {% endif %}
             <span hidden itemprop="image">{{ page.image }}</span>
             <span hidden itemprop="mainEntityOfPage">{{ page.excerpt }}</span>
           </div>
@@ -46,17 +50,8 @@ layout: compress
 
         <div class="page-content" itemprop="articleBody">
           {% include anchor_headings.html html=content anchorClass="anchor-head" beforeHeading=true h_min=1 h_max=4 %}
-          {% if page.tweet %}
-          <p>Comments this article on 
-            <a href="https://twitter.com/{{site.twitter}}/status/{{page.tweet}}">Twitter</a>.
-          </p>
-          {% endif %}
         </div>
       </article>
-    
-      {% if page.comments %}
-        {% include comments.html%}
-      {% endif %}
 
     </main>
 
