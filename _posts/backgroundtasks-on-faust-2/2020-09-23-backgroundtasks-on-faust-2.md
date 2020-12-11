@@ -1,9 +1,9 @@
 ---
-title: Фоновые задачи на Faust, Часть II: Агенты и Команды
+title: Фоновые задачи на Faust, Часть II. Агенты и Команды
 date: 2020-09-23
 modified: 2020-09-23
 tags: [python, faust, kafka, kafka-streams]
-description: Фоновые задачи на Faust, Часть II: Агенты и Команды
+description: Фоновые задачи на Faust, Часть II. Агенты и Команды
 external_link: https://habr.com/ru/post/520274/
 external_link_name: HABR Originals
 ---

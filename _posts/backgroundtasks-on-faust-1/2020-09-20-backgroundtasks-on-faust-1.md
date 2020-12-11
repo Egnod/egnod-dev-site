@@ -1,9 +1,9 @@
 ---
-title: Фоновые задачи на Faust, Часть I: Введение
+title: Фоновые задачи на Faust, Часть I. Введение
 date: 2020-09-20
 modified: 2020-09-20
 tags: [python, faust, kafka, kafka-streams]
-description: Фоновые задачи на Faust, Часть I: Введение
+description: Фоновые задачи на Faust, Часть I. Введение
 ---
 
 ![https://habrastorage.org/webt/wo/6b/ui/wo6buieqgfwzr4y5tczce4js0rc.png](https://habrastorage.org/webt/wo/6b/ui/wo6buieqgfwzr4y5tczce4js0rc.png)
