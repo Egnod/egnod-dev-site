@@ -378,4 +378,4 @@ As you can see, the configuring is quite simple with Sitri, after it we get a cl
 
 Write comments about lib, code or general impressions. I will be glad to any feedback!
 
-P.S. [I have uploaded the code from the article to github] (https://github.com/Egnod/article_sitri_vault_pydantic)
+P.S. [I have uploaded the code from the article to github](https://github.com/Egnod/article_sitri_vault_pydantic)
