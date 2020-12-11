@@ -4,6 +4,8 @@ date: 2019-10-18
 modified: 2019-10-18
 tags: [python, docker, flask, sql, sitri]
 description: Система контроля библиотеки на Flask-Potion
+external_link: https://habr.com/ru/post/472018/
+external_link_name: HABR Originals
 ---
 
 #  Введение

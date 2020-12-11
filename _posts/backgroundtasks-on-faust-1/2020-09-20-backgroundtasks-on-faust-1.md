@@ -4,6 +4,8 @@ date: 2020-09-20
 modified: 2020-09-20
 tags: [python, faust, kafka, kafka-streams]
 description: Фоновые задачи на Faust, Часть I. Введение
+external_link: https://habr.com/ru/post/519882/
+external_link_name: HABR Originals
 ---
 
 ![https://habrastorage.org/webt/wo/6b/ui/wo6buieqgfwzr4y5tczce4js0rc.png](https://habrastorage.org/webt/wo/6b/ui/wo6buieqgfwzr4y5tczce4js0rc.png)
