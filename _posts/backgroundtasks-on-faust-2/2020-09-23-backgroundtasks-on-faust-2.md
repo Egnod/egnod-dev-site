@@ -12,17 +12,17 @@ external_link_name: HABR Originals
 
 ### Оглавление
 
-1.  [Часть I: Введение](https://egnod.dev/backgroundtasks-on-faust-1)
+1. [Часть I: Введение](https://egnod.dev/backgroundtasks-on-faust-1)
 
-2.  Часть II: Агенты и Команды
+2. Часть II: Агенты и Команды
 
 ### Что мы тут делаем?
 
 Итак-итак, вторая часть. Как и писалось ранее, в ней мы сделаем следующее:
 
-1.  Напишем небольшой клиентик для alphavantage на aiohttp с запросами на нужные нам эндпоинты.
+1. Напишем небольшой клиентик для alphavantage на aiohttp с запросами на нужные нам эндпоинты.
 
-2.  Сделаем агента, который будет собирать данные о ценных бумагах и мета информацию по ним.
+2. Сделаем агента, который будет собирать данные о ценных бумагах и мета информацию по ним.
 
 Но, это то, что мы сделаем для самого проекта, а в плане исследования faust мы узнаем, как писать агентов, обрабатывающих стрим событий из kafka, а так же как написать команды (обёртка на click), в нашем случаи - для ручного пуша сообщения в топик, за которым следит агент.
 
@@ -36,11 +36,11 @@ external_link_name: HABR Originals
 
 Собственно по нему всё ясно:
 
-1.  API AlphaVantage достаточно просто и красиво спроектирована, поэтому все запросы я решил проводить через метод `construct_query` где в свою очередь идёт http вызов.
+1. API AlphaVantage достаточно просто и красиво спроектирована, поэтому все запросы я решил проводить через метод `construct_query` где в свою очередь идёт http вызов.
 
-2.  Все поля я привожу к `snake_case` для удобства.
+2. Все поля я привожу к `snake_case` для удобства.
 
-3.  Ну и декорация logger.catch для красивого и информативного вывода трейсбека.
+3. Ну и декорация logger.catch для красивого и информативного вывода трейсбека.
 
 P.S. Незабываем локально добавить токен alphavantage в config.yml, либо экспортировать переменную среды `HORTON_SERVICE_APIKEY`. Получаем токен [тут](https://www.alphavantage.co/support/#api-key).
 
@@ -73,11 +73,11 @@ async def collect_securities(stream: StreamT[None]) -> AsyncIterable[bool]:
 
 Так, сначала получаем объект faust-приложения - это достаточно просто. Далее, мы явно объявляем топик для нашего агента... Тут стоит упомянуть, что это такое, что за параметр internal и как это можно устроить по-другому.
 
-1.  Топики в kafka, если мы хотим узнать точное определение, то лучше прочитать [офф. доку](https://kafka.apache.org/documentation/#intro_concepts_and_terms), либо можно прочитать [конспект](https://habr.com/ru/post/354486/) на хабре на русском, где так же всё достаточно точно отражено :)
+1. Топики в kafka, если мы хотим узнать точное определение, то лучше прочитать [офф. доку](https://kafka.apache.org/documentation/#intro_concepts_and_terms), либо можно прочитать [конспект](https://habr.com/ru/post/354486/) на хабре на русском, где так же всё достаточно точно отражено :)
 
-2.  [Параметр internal](https://faust.readthedocs.io/en/latest/reference/faust.html?highlight=internal#faust.TopicT.internal), достаточно хорошо описанный в доке faust, позволяет нам настраивать топик прямо в коде, естественно, имеются ввиду параметры, предусмотренные разработчиками faust, например: retention, retention policy (по-умолчанию delete, но можно установить и [compact](https://faust.readthedocs.io/en/latest/reference/faust.html?highlight=internal#faust.TopicT.compacting)), кол-во партиций на топик ([partitions](https://faust.readthedocs.io/en/latest/reference/faust.topics.html?highlight=partitions#faust.topics.Topic.partitions), чтобы сделать, например, меньшее чем [глобальное значение](https://faust.readthedocs.io/en/latest/reference/faust.app.html?highlight=partitions#faust.app.App.Settings.topic_partitions) приложения faust).
+2. [Параметр internal](https://faust.readthedocs.io/en/latest/reference/faust.html?highlight=internal#faust.TopicT.internal), достаточно хорошо описанный в доке faust, позволяет нам настраивать топик прямо в коде, естественно, имеются ввиду параметры, предусмотренные разработчиками faust, например: retention, retention policy (по-умолчанию delete, но можно установить и [compact](https://faust.readthedocs.io/en/latest/reference/faust.html?highlight=internal#faust.TopicT.compacting)), кол-во партиций на топик ([partitions](https://faust.readthedocs.io/en/latest/reference/faust.topics.html?highlight=partitions#faust.topics.Topic.partitions), чтобы сделать, например, меньшее чем [глобальное значение](https://faust.readthedocs.io/en/latest/reference/faust.app.html?highlight=partitions#faust.app.App.Settings.topic_partitions) приложения faust).
 
-3.  Вообще, агент может создавать сам управляемый топик с глобальными значениями, однако, я люблю объявлять всё явно. К тому же, некоторые параметры (например, кол-во партиций или retention policy) топика в объявлении агента настроить нельзя.
+3. Вообще, агент может создавать сам управляемый топик с глобальными значениями, однако, я люблю объявлять всё явно. К тому же, некоторые параметры (например, кол-во партиций или retention policy) топика в объявлении агента настроить нельзя.
 
     Вот как это могло было выглядеть без ручного определения топика:
 
@@ -273,11 +273,11 @@ for security in securities:
 
 Используем ранее объявлению схему для сообщения. В данном случае, я использовал метод .cast, так как нам не нужно ожидать результат от агента, но стоит упомянуть, что [способов](https://faust.readthedocs.io/en/latest/userguide/agents.html?highlight=.cast#cast-or-ask) послать сообщение в топик:
 
-1.  cast - не блокирует, так как не ожидает результата. Нельзя послать результат в другой топик сообщением.
+1. cast - не блокирует, так как не ожидает результата. Нельзя послать результат в другой топик сообщением.
 
-2.  send - не блокирует, так как не ожидает результата. Можно указать агента в топик которого уйдёт результат.
+2. send - не блокирует, так как не ожидает результата. Можно указать агента в топик которого уйдёт результат.
 
-3.  ask - ожидает результата. Можно указать агента в топик которого уйдёт результат.
+3. ask - ожидает результата. Можно указать агента в топик которого уйдёт результат.
 
 Итак, на этом с агентами на сегодня всё!
 
