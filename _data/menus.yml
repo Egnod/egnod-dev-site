@@ -26,7 +26,6 @@
   url: https://www.linkedin.com/in/aleksander-lavrov-52283b19b
   external: true
 
-- title: central
-  url: https://home.egnod.dev
+- title: CA
+  url: https://egnod.keybase.pub/rootCA.pem
   external: true
-
