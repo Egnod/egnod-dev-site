@@ -23,6 +23,7 @@ jobs:
           with:
             key: ${{ secrets.SSH_PRIVATE_KEY }}
             known_hosts: ${{ secrets.SSH_KNOWN_HOST }}
+            name: id_ed25519
         
         - name: Adding Known Hosts
           run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
