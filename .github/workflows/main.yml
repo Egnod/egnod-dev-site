@@ -31,6 +31,7 @@ jobs:
           run: |
             sudo apt update
             sudo apt install ruby-bundler
+            ls -a
             bundle install
             bundle exec jekyll build
             rsync -avz ./_site/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/egnod/egnod.dev/
