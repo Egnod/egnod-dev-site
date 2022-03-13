@@ -29,7 +29,8 @@ jobs:
         
         - name: Deploy with rsync
           run: |
-            apt update && apt install ruby-bundler
+            sudo apt update
+            sudo apt install ruby-bundler
             bundle install
             bundle exec jekyll build
             rsync -avz ./_site/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/egnod/egnod.dev/
