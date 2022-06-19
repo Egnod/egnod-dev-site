@@ -14,20 +14,19 @@ jobs:
     steps:
         - name: Checkout
           uses: actions/checkout@v2
-        - name: Install SSH Key
-          uses: shimataro/ssh-key-action@v2
+
+        - name: Install surge and fire deployment
+          uses: actions/setup-node@v1
           with:
-            key: ${{ secrets.SSH_PRIVATE_KEY }}
-            known_hosts: "stub"
-        
-        - name: Adding Known Hosts
-          run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-        
-        - name: Deploy with rsync
+            node-version: 8
+
+        - name: Build and install deps
           run: |
             sudo apt update
             sudo apt install ruby-bundler
             ls -a
             bundle install
             bundle exec jekyll build
-            rsync -avz ./_site/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/egnod/egnod.dev/
+  
+        - run: npm install -g surge
+        - run: surge ./_site ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
