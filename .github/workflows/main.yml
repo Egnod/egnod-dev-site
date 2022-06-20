@@ -29,4 +29,5 @@ jobs:
             bundle exec jekyll build
   
         - run: npm install -g surge
+        - run: touch ./_site_/CNAME && echo egnod.dev > ./_site_/CNAME
         - run: surge ./_site ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
