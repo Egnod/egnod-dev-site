@@ -1,0 +1,241 @@
+<!DOCTYPE html> <html lang="en-US"> <head prefix="og: http://ogp.me/ns#"> <meta charset="UTF-8" /> <meta http-equiv="X-UA-Compatible" content="ie=edge" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <meta name="mobile-web-app-capable" content="yes" /> <meta name="apple-mobile-web-app-capable" content="yes" /> <meta name="application-name" content="Alexander (Egnod) Lavrov" /> <meta name="apple-mobile-web-app-status-bar-style" content="#fff" /> <meta name="apple-mobile-web-app-title" content="Alexander (Egnod) Lavrov" /> <title> Configuring the service using Vault and Pydantic - Alexander (Egnod) Lavrov </title> <link rel="alternate" href="http://egnod.dev/configuring-the-service-using-vault-and-pydantic/" hreflang="en-US" /> <link rel="canonical" href="http://egnod.dev/configuring-the-service-using-vault-and-pydantic/" /> <meta name="description" content="Configuring the service using Vault and Pydantic" /> <meta name="referrer" content="no-referrer-when-downgrade" /> <meta property="fb:app_id" content="" /> <meta property="og:site_name" content="Configuring the service using Vault and Pydantic | " /> <meta property="og:title" content="Configuring the service using Vault and Pydantic | " /> <meta property="og:type" content="website" /> <meta property="og:url" content="http://egnod.dev/configuring-the-service-using-vault-and-pydantic/" /> <meta property="og:description" content="Configuring the service using Vault and Pydantic" /> <meta property="og:image" content="http://egnod.dev/assets/img/ogp.png" /> <meta property="og:image:width" content="640" /> <meta property="og:image:height" content="640" /> <meta name="twitter:card" content="summary" /> <meta name="twitter:title" content="Configuring the service using Vault and Pydantic | " /> <meta name="twitter:url" content="http://egnod.dev/configuring-the-service-using-vault-and-pydantic/" /> <meta name="twitter:site" content="@" /> <meta name="twitter:creator" content="@" /> <meta name="twitter:description" content="Configuring the service using Vault and Pydantic" /> <meta name="twitter:image" content="http://egnod.dev/assets/img/ogp.png" /> <link type="application/atom+xml" rel="alternate" href="http://egnod.dev/feed.xml" title="Alexander (Egnod) Lavrov" /> <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png" /> <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png" /> <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png" /> <link rel="manifest" href="/assets/favicons/site.webmanifest" /> <link rel="mask-icon" href="/assets/favicons/safari-pinned-tab.svg" color="#5bbad5" /> <meta name="apple-mobile-web-app-title" content="Jekyll Klise" /> <meta name="application-name" content="Jekyll Klise" /> <meta name="msapplication-TileColor" content="#da532c" /> <meta name="theme-color" content="#2c2c2c" /> <link rel="stylesheet" href="/assets/css/style.css" /> </head> <body data-theme="dark"> <div class="navbar" role="navigation"> <nav class="menu"> <input type="checkbox" id="menu-trigger" class="menu-trigger" /> <label for="menu-trigger"> <span class="menu-icon"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512" > <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" /> </svg> </span> </label> <a id="mode"> <svg class="mode-sunny" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512" > <title>LIGHT</title> <line x1="256" y1="48" x2="256" y2="96" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" /> <line x1="256" y1="416" x2="256" y2="464" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" /> <line x1="403.08" y1="108.92" x2="369.14" y2="142.86" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" /> <line x1="142.86" y1="369.14" x2="108.92" y2="403.08" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" /> <line x1="464" y1="256" x2="416" y2="256" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" /> <line x1="96" y1="256" x2="48" y2="256" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" /> <line x1="403.08" y1="403.08" x2="369.14" y2="369.14" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" /> <line x1="142.86" y1="142.86" x2="108.92" y2="108.92" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" /> <circle cx="256" cy="256" r="80" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" /> </svg> <svg class="mode-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512" > <title>DARK</title> <line x1="256" y1="48" x2="256" y2="96" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" /> <line x1="256" y1="416" x2="256" y2="464" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" /> <line x1="403.08" y1="108.92" x2="369.14" y2="142.86" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" /> <line x1="142.86" y1="369.14" x2="108.92" y2="403.08" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" /> <line x1="464" y1="256" x2="416" y2="256" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" /> <line x1="96" y1="256" x2="48" y2="256" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" /> <line x1="403.08" y1="403.08" x2="369.14" y2="369.14" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" /> <line x1="142.86" y1="142.86" x2="108.92" y2="108.92" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" /> <circle cx="256" cy="256" r="80" style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" /> </svg> </a> <div class="trigger"> <div class="trigger-container"> <a class="menu-link" href="/">home</a> <a class="menu-link" href="https://github.com/egnod" target="_blank" rel="noopener" >github</a > <a class="menu-link" href="https://habr.com/en/users/egnodus/posts/" target="_blank" rel="noopener" >habr</a > <a class="menu-link" href="https://dev.to/egnod" target="_blank" rel="noopener" >dev.to</a > <a class="menu-link" href="https://egnod.medium.com/" target="_blank" rel="noopener" >medium</a > <a class="menu-link" href="https://keybase.io/egnod" target="_blank" rel="noopener" >keybase</a > <a class="menu-link" href="https://www.linkedin.com/in/aleksander-lavrov-52283b19b" target="_blank" rel="noopener" >linkedin</a > <a class="menu-link" href="https://egnod.keybase.pub/rootCA.pem" target="_blank" rel="noopener" >CA</a > </div> </div> </nav> </div> <div class="wrapper post"> <main class="page-content" aria-label="Content"> <article itemscope itemtype="https://schema.org/BlogPosting"> <header class="header"> <div class="tags"> <span itemprop="keywords"> <a class="tag" href="/tags/#python">PYTHON</a>, <a class="tag" href="/tags/#faust">FAUST</a>, <a class="tag" href="/tags/#kafka">KAFKA</a>, <a class="tag" href="/tags/#vault">VAULT</a>, <a class="tag" href="/tags/#sitri">SITRI</a> </span> </div> <h1 class="header-title" itemprop="headline">Configuring the service using Vault and Pydantic</h1> <div class="post-meta"> <time datetime="2020-12-10T00:00:00+03:00" itemprop="datePublished"> Dec 10, 2020 </time> <span itemprop="author" itemscope itemtype="https://schema.org/Person"> <span itemprop="name">Alexander (Egnod) Lavrov</span> </span> <span itemprop="publisher" itemtype="Organization"> <span itemprop="url">with <a href="https://dev.to/egnod/configuring-the-service-using-vault-and-pedantic-2d91">DEV.to</a>💗</span> </span> <time hidden datetime="2020-12-10T00:00:00+03:00" itemprop="dateModified"> Dec 10, 2020 </time> <span hidden itemprop="image"></span> <span hidden itemprop="mainEntityOfPage"><h1 id="introduction">Introduction</h1> </span> </div> </header> <div class="page-content" itemprop="articleBody"> <h1 id="introduction"> <a href="#introduction" class="anchor-head"></a> Introduction </h1> <p>In this article, I will talk about the configuration for your services using the Vault (KV and so far only the first version, i.e. without versioning secrets) and Pydantic (Settings) under the patronage of <a href="https://github.com/LemegetonX/sitri">Sitri</a>.</p> <p>So, let’s say that we have a <em>superapp</em> service with configs set up in Vault and authentication using AppRole, we’ll set it up like this (I’ll leave the policies setting for access to secret engines and the secrets themselves behind the scenes, since this is quite simple and the article is not about this):</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Key                        Value
+---                        -----
+bind_secret_id             true
+local_secret_ids           false
+policies                   [superapp_service]
+secret_id_bound_cidrs      &lt;nil&gt;
+secret_id_num_uses         0
+secret_id_ttl              0s
+token_bound_cidrs          []
+token_explicit_max_ttl     0s
+token_max_ttl              30m
+token_no_default_policy    false
+token_num_uses             50
+token_period               0s
+token_policies             [superapp_service]
+token_ttl                  20m
+token_type                 default
+</code></pre></div></div> <p><em>Note:</em> naturally, if you have the opportunity and the application goes into production mode, then secret_id_ttl is better to do not infinite, setting 0 seconds.</p> <p><em>Superapp</em> requires configuration of database connection, the connection to kafka and <a href="http://faust.readthedocs.io">faust</a> configuration for cluster of workers.</p> <p>At the end, we should have this structure of our test-project:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>super_app
+├── config
+│ ├── __init__.py
+│ ├── provider_config.py
+│ ├── faust_settings.py
+│ ├── app_settings.py
+│ ├── kafka_settings.py
+│ └── database_settings.py
+├── __init__.py
+└── main.py
+</code></pre></div></div> <h1 id="bake-sitri-provider"> <a href="#bake-sitri-provider" class="anchor-head"></a> Bake Sitri provider </h1> <p>Basic library documentation has [a simple example] (https://sitri.readthedocs.io/en/latest/advanced_usage.html#vault-kv-setting-example), configuration via the vault provider, however, it does not cover all the features and can be useful if your application is configured easily enough.</p> <p>So, first of all, let’s configure the vault provider in a file <em>provider_config.py</em>:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">hvac</span>  
+  
+<span class="kn">from</span> <span class="nn">sitri.providers.contrib.vault</span> <span class="kn">import</span> <span class="n">VaultKVConfigProvider</span>  
+<span class="kn">from</span> <span class="nn">sitri.providers.contrib.system</span> <span class="kn">import</span> <span class="n">SystemConfigProvider</span>  
+  
+<span class="n">configurator</span> <span class="o">=</span> <span class="n">SystemConfigProvider</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="s">"superapp"</span><span class="p">)</span>  
+<span class="n">ENV</span> <span class="o">=</span> <span class="n">configurator</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"env"</span><span class="p">)</span>  
+  
+  
+<span class="k">def</span> <span class="nf">vault_client_factory</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">hvac</span><span class="p">.</span><span class="n">Client</span><span class="p">:</span>  
+    <span class="n">client</span> <span class="o">=</span> <span class="n">hvac</span><span class="p">.</span><span class="n">Client</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">configurator</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"vault_api"</span><span class="p">))</span>  
+  
+    <span class="n">client</span><span class="p">.</span><span class="n">auth_approle</span><span class="p">(</span>  
+        <span class="n">role_id</span><span class="o">=</span><span class="n">configurator</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"role_id"</span><span class="p">),</span>  
+  <span class="n">secret_id</span><span class="o">=</span><span class="n">configurator</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"secret_id"</span><span class="p">),</span>  
+  <span class="p">)</span>  
+  
+    <span class="k">return</span> <span class="n">client</span>  
+  
+  
+<span class="n">provider</span> <span class="o">=</span> <span class="n">VaultKVConfigProvider</span><span class="p">(</span>  
+    <span class="n">vault_connector</span><span class="o">=</span><span class="n">vault_client_factory</span><span class="p">,</span> <span class="n">mount_point</span><span class="o">=</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">configurator</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'app_name'</span><span class="p">)</span><span class="si">}</span><span class="s">/</span><span class="si">{</span><span class="n">ENV</span><span class="si">}</span><span class="s">"</span>  
+<span class="p">)</span>
+</code></pre></div></div> <p>In this code, we get variables from the environment using the system provider to configure the connection to vault, i.e. the following variables must be exported initially:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">SUPERAPP_ENV</span><span class="o">=</span>dev
+<span class="nb">export </span><span class="nv">SUPERAPP_APP_NAME</span><span class="o">=</span>superapp
+<span class="nb">export </span><span class="nv">SUPERAPP_VAULT_API</span><span class="o">=</span>https://your-vault-host.domain
+<span class="nb">export </span><span class="nv">SUPERAPP_ROLE_ID</span><span class="o">=</span>&lt;YOUR_ROLE_ID&gt;
+<span class="nb">export </span><span class="nv">SUPERAPP_SECRET_ID</span><span class="o">=</span>&lt;YOUR_SECRET_ID&gt;
+</code></pre></div></div> <p>The example assumes that the base mount_point to your secrets for a specific environment will contain the application name and the environment name, which is why we exported <em>SUPERAPP_ENV</em>. We will define the path to the secrets of individual parts of the application in the settings classes later, so we leave it empty in the <em>secret_path</em> vault provider argument.</p> <h1 id="settings-classes"> <a href="#settings-classes" class="anchor-head"></a> Settings classes </h1> <h2 id="dbsetting---database-connection"> <a href="#dbsetting---database-connection" class="anchor-head"></a> DBSetting - database connection </h2> <p>To create the settings class, we must use VaultKVSettings as the base class.</p> <p>File <em>database_settings.py</em>:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">Field</span>  
+  
+<span class="kn">from</span> <span class="nn">sitri.settings.contrib.vault</span> <span class="kn">import</span> <span class="n">VaultKVSettings</span>  
+  
+<span class="kn">from</span> <span class="nn">superapp.config.provider_config</span> <span class="kn">import</span> <span class="n">provider</span>  
+  
+  
+<span class="k">class</span> <span class="nc">DBSettings</span><span class="p">(</span><span class="n">VaultKVSettings</span><span class="p">):</span>  
+    <span class="n">user</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(...,</span> <span class="n">vault_secret_key</span><span class="o">=</span><span class="s">"username"</span><span class="p">)</span>  
+    <span class="n">password</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(...)</span>  
+    <span class="n">host</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(...)</span>  
+    <span class="n">port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(...)</span>  
+  
+    <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>  
+        <span class="n">provider</span> <span class="o">=</span> <span class="n">provider</span>  
+        <span class="n">default_secret_path</span> <span class="o">=</span> <span class="s">"db"</span>
+</code></pre></div></div> <p>As you can see, config data for the database connection is quite simple. This class will by default look at the secret <em>superapp/dev/db</em>, as we specified in the <em>Config</em> class. At first glance these are simple <em>pydantic.Field</em>, but they all have an extra argument <em>vault_secret_key</em> - it is needed when the key in the secret does not match the name (alias) of the pydantic field in our class, if <em>vault_secret_key</em> is not specified, the provider will search for the key by the field alias.</p> <p>For example, in our <em>superapp</em>, it is assumed that the <em>superapp/dev/db</em> secret has the “password” and “username” keys, but we want the latter to be placed in the “user” field for convenience and brevity.</p> <p>Let’s put the following data in the above secret:</p> <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testhost"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testpassword"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"port"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testuser"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div> <p>Now, if we run this code, we will get our secret from vault with our <em>DBSettings</em> class:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">superapp.config.database_settings</span> <span class="kn">import</span> <span class="n">DBSettings</span>
+
+<span class="n">db_settings</span> <span class="o">=</span> <span class="n">DBSettings</span><span class="p">()</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">db_settings</span><span class="p">.</span><span class="nb">dict</span><span class="p">())</span>
+<span class="c1"># -&gt; 
+# {
+#     "host": "testhost",
+#     "password": "testpassword",
+#     "port": 1234,
+#     "user": "testuser"
+# }
+</span></code></pre></div></div> <h2 id="kafkasettings---connection-to-brokers"> <a href="#kafkasettings---connection-to-brokers" class="anchor-head"></a> KafkaSettings - connection to brokers </h2> <p>File <em>kafka_settings.py</em>:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>  
+  
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">Field</span>  
+  
+<span class="kn">from</span> <span class="nn">sitri.settings.contrib.vault</span> <span class="kn">import</span> <span class="n">VaultKVSettings</span>  
+  
+<span class="kn">from</span> <span class="nn">superapp.config.provider_config</span> <span class="kn">import</span> <span class="n">provider</span><span class="p">,</span> <span class="n">configurator</span>  
+  
+  
+<span class="k">class</span> <span class="nc">KafkaSettings</span><span class="p">(</span><span class="n">VaultKVSettings</span><span class="p">):</span>  
+    <span class="n">auth_mechanism</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(...)</span>  
+    <span class="n">brokers</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(...)</span>  
+    <span class="n">auth_data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(...)</span>  
+  
+    <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>  
+        <span class="n">provider</span> <span class="o">=</span> <span class="n">provider</span>  
+        <span class="n">default_secret_path</span> <span class="o">=</span> <span class="s">"kafka"</span>  
+        <span class="n">default_mount_point</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">configurator</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'app_name'</span><span class="p">)</span><span class="si">}</span><span class="s">/common"</span>
+</code></pre></div></div> <p>In this case, let’s imagine that there is one kafka instance for different environments of our service, so the secret is stored along the path <em>superapp/common/kafka</em>:</p> <p><em>Note:</em> You can also set secret_path or/and mount_point at the field level so that the provider requests specific values from different secrets (if required). Here is a quote with prioritization of the secret path and mount point from the <a href="https://sitri.readthedocs.io/en/latest/advanced_usage.html#vault-settings-configurators">documentation</a>:</p> <blockquote> <p>Secret path prioritization:</p> <ol> <li>vault_secret_path (Field arg)</li> <li>default_secret_path (Config class field)</li> <li>secret_path (provider initialization optional arg)</li> </ol> </blockquote> <blockquote> <p>Mount point prioritization:</p> <ol> <li>vault_mount_point (Field arg)</li> <li>default_mount_point (Config class field)</li> <li>mount_point (provider initialization optional arg)</li> </ol> </blockquote> <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"auth_data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">password</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">testpassword</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">username</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">testuser</span><span class="se">\"</span><span class="s2">}"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"auth_mechanism"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SASL_PLAINTEXT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"brokers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kafka://test"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div> <p>Or</p> <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"auth_data"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testpassword"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testuser"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"brokers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kafka://test"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"auth_mechanism"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SASL_PLAINTEXT"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div> <p><em>Note:</em> VaultKVSettings can understand both json and Dict itself.</p> <p>As a result, this class of settings will be able to collect data from the secret like this:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+    <span class="s">"auth_data"</span><span class="p">:</span>
+    <span class="p">{</span>
+        <span class="s">"password"</span><span class="p">:</span> <span class="s">"testpassword"</span><span class="p">,</span>
+        <span class="s">"username"</span><span class="p">:</span> <span class="s">"testuser"</span>
+    <span class="p">},</span>
+    <span class="s">"brokers"</span><span class="p">:</span> <span class="s">"kafka://test"</span><span class="p">,</span>
+    <span class="s">"auth_mechanism"</span><span class="p">:</span> <span class="s">"SASL_PLAINTEXT"</span>
+<span class="p">}</span>
+</code></pre></div></div> <h2 id="faustsettings---global-configure-faust-and-individual-agents"> <a href="#faustsettings---global-configure-faust-and-individual-agents" class="anchor-head"></a> FaustSettings - global configure faust and individual agents </h2> <p>File <em>faust_settings.py</em>:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>  
+  
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">Field</span><span class="p">,</span> <span class="n">BaseModel</span>  
+  
+<span class="kn">from</span> <span class="nn">sitri.settings.contrib.vault</span> <span class="kn">import</span> <span class="n">VaultKVSettings</span>  
+  
+<span class="kn">from</span> <span class="nn">superapp.config.provider_config</span> <span class="kn">import</span> <span class="n">provider</span>  
+  
+  
+<span class="k">class</span> <span class="nc">AgentConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>  
+    <span class="n">partitions</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(...)</span>  
+    <span class="n">concurrency</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(...)</span>  
+  
+  
+<span class="k">class</span> <span class="nc">FaustSettings</span><span class="p">(</span><span class="n">VaultKVSettings</span><span class="p">):</span>  
+    <span class="n">app_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(...)</span>  
+    <span class="n">default_partitions_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(...,</span> <span class="n">vault_secret_key</span><span class="o">=</span><span class="s">"partitions_count"</span><span class="p">)</span>  
+    <span class="n">default_concurrency</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(...,</span> <span class="n">vault_secret_key</span><span class="o">=</span><span class="s">"agent_concurrency"</span><span class="p">)</span>  
+    <span class="n">agents</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">AgentConfig</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">vault_secret_key</span><span class="o">=</span><span class="s">"agents_specification"</span><span class="p">)</span>  
+  
+    <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>  
+        <span class="n">provider</span> <span class="o">=</span> <span class="n">provider</span>  
+        <span class="n">default_secret_path</span> <span class="o">=</span> <span class="s">"faust"</span>
+</code></pre></div></div> <p>Secret <em>superapp/dev/faust</em>:</p> <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"agent_concurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"app_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"superapp-workers"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"partitions_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div> <p>If our secret is written as indicated above, then individual agents will take information about the number of partitions in their topics and concurrency from the default fields.</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="s">"agents"</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+  <span class="s">"app_name"</span><span class="p">:</span> <span class="s">"superapp-workers"</span><span class="p">,</span>
+  <span class="s">"default_concurrency"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+  <span class="s">"default_partitions_count"</span><span class="p">:</span> <span class="mi">10</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>However, with the help of the <em>AgentConfig</em> model, we can set individual values for a specific agent. For example, if we have agent <em>X</em> with 5 partitions and concurrency 2, then we can change our secret so that information about this agent is in the “agents” field.</p> <p>Secret <em>superapp/dev/faust</em>:</p> <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"agent_concurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"agents_specification"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"X"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"concurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"partitions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"app_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"superapp-workers"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"partitions_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div> <p>If we initialize our settings now, we will receive, in addition to the default fields, also the configuration for a specific agent:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+    <span class="s">"agents"</span><span class="p">:</span>
+    <span class="p">{</span>
+        <span class="s">"X"</span><span class="p">:</span>
+        <span class="p">{</span>
+            <span class="s">"concurrency"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="s">"partitions"</span><span class="p">:</span> <span class="mi">5</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s">"app_name"</span><span class="p">:</span> <span class="s">"superapp-workers"</span><span class="p">,</span>
+    <span class="s">"default_concurrency"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s">"default_partitions_count"</span><span class="p">:</span> <span class="mi">10</span>
+<span class="p">}</span>
+</code></pre></div></div> <h2 id="combine-the-settings-classes-into-a-single-configuration-model"> <a href="#combine-the-settings-classes-into-a-single-configuration-model" class="anchor-head"></a> Combine the settings classes into a single configuration model </h2> <p>To make our configs even more convenient to use, let’s combine all our settings classes into one model by applying the default_factory:</p> <p>File <em>app_settings.py</em>:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>  
+  
+<span class="kn">from</span> <span class="nn">superapp.config.database_settings</span> <span class="kn">import</span> <span class="n">DBSettings</span>  
+<span class="kn">from</span> <span class="nn">superapp.config.faust_settings</span> <span class="kn">import</span> <span class="n">FaustSettings</span>  
+<span class="kn">from</span> <span class="nn">superapp.config.kafka_settings</span> <span class="kn">import</span> <span class="n">KafkaSettings</span>  
+  
+  
+<span class="k">class</span> <span class="nc">AppSettings</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>  
+    <span class="n">db</span><span class="p">:</span> <span class="n">DBSettings</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">DBSettings</span><span class="p">)</span>  
+    <span class="n">faust</span><span class="p">:</span> <span class="n">FaustSettings</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">FaustSettings</span><span class="p">)</span>  
+    <span class="n">kafka</span><span class="p">:</span> <span class="n">KafkaSettings</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">KafkaSettings</span><span class="p">)</span>
+</code></pre></div></div> <p>Now, let’s go to the <em>main.py</em> file and test the collection of complete configuration data for our application:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">superapp.config</span> <span class="kn">import</span> <span class="n">AppSettings</span>  
+  
+<span class="n">config</span> <span class="o">=</span> <span class="n">AppSettings</span><span class="p">()</span>  
+  
+<span class="k">print</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>  
+<span class="k">print</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="nb">dict</span><span class="p">())</span>
+</code></pre></div></div> <p>We get the output of application configuration:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">db</span><span class="o">=</span><span class="n">DBSettings</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="s">'testuser'</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s">'testpassword'</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s">'testhost'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">1234</span><span class="p">)</span> 
+<span class="n">faust</span><span class="o">=</span><span class="n">FaustSettings</span><span class="p">(</span><span class="n">app_name</span><span class="o">=</span><span class="s">'superapp-workers'</span><span class="p">,</span> <span class="n">default_partitions_count</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">default_concurrency</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">agents</span><span class="o">=</span><span class="p">{</span><span class="s">'X'</span><span class="p">:</span> <span class="n">AgentConfig</span><span class="p">(</span><span class="n">partitions</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">concurrency</span><span class="o">=</span><span class="mi">2</span><span class="p">)})</span> 
+<span class="n">kafka</span><span class="o">=</span><span class="n">KafkaSettings</span><span class="p">(</span><span class="n">auth_mechanism</span><span class="o">=</span><span class="s">'SASL_PLAINTEXT'</span><span class="p">,</span> <span class="n">brokers</span><span class="o">=</span><span class="s">'kafka://test'</span><span class="p">,</span> <span class="n">auth_data</span><span class="o">=</span><span class="p">{</span><span class="s">'password'</span><span class="p">:</span> <span class="s">'testpassword'</span><span class="p">,</span> <span class="s">'username'</span><span class="p">:</span> <span class="s">'testuser'</span><span class="p">})</span>
+</code></pre></div></div> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+    <span class="s">"db"</span><span class="p">:</span>
+    <span class="p">{</span>
+        <span class="s">"host"</span><span class="p">:</span> <span class="s">"testhost"</span><span class="p">,</span>
+        <span class="s">"password"</span><span class="p">:</span> <span class="s">"testpassword"</span><span class="p">,</span>
+        <span class="s">"port"</span><span class="p">:</span> <span class="mi">1234</span><span class="p">,</span>
+        <span class="s">"user"</span><span class="p">:</span> <span class="s">"testuser"</span>
+    <span class="p">},</span>
+    <span class="s">"faust"</span><span class="p">:</span>
+    <span class="p">{</span>
+        <span class="s">"agents"</span><span class="p">:</span>
+        <span class="p">{</span>
+            <span class="s">"X"</span><span class="p">:</span>
+            <span class="p">{</span>
+                <span class="s">"concurrency"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="s">"partitions"</span><span class="p">:</span> <span class="mi">5</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s">"app_name"</span><span class="p">:</span> <span class="s">"superapp-workers"</span><span class="p">,</span>
+        <span class="s">"default_concurrency"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s">"default_partitions_count"</span><span class="p">:</span> <span class="mi">10</span>
+    <span class="p">},</span>
+    <span class="s">"kafka"</span><span class="p">:</span>
+    <span class="p">{</span>
+        <span class="s">"auth_data"</span><span class="p">:</span>
+        <span class="p">{</span>
+            <span class="s">"password"</span><span class="p">:</span> <span class="s">"testpassword"</span><span class="p">,</span>
+            <span class="s">"username"</span><span class="p">:</span> <span class="s">"testuser"</span>
+        <span class="p">},</span>
+        <span class="s">"brokers"</span><span class="p">:</span> <span class="s">"kafka://test"</span><span class="p">,</span>
+        <span class="s">"auth_mechanism"</span><span class="p">:</span> <span class="s">"SASL_PLAINTEXT"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>Happiness, joy, delight!</p> <h1 id="afterword"> <a href="#afterword" class="anchor-head"></a> Afterword </h1> <p>As you can see, the configuring is quite simple with Sitri, after it we get a clear configuration scheme with the required data types for the values, even if they were stored in strings in the vault by default.</p> <p>Write comments about lib, code or general impressions. I will be glad to any feedback!</p> <p>P.S. <a href="https://github.com/Egnod/article_sitri_vault_pydantic">I have uploaded the code from the article to github</a></p> </div> </article> </main> <nav class="post-nav"> <a class="post-nav-item post-nav-prev" href="/backgroundtasks-on-faust-2/" > <div class="nav-arrow">Previous</div> <span class="post-title">Фоновые задачи на Faust, Часть II. Агенты и Команды</span> </a> </nav> <footer class="footer"> <small class="footer_theme-copyright"> <!-- Klisé Theme: https://github.com/piharpi/jekyll-klise --> <a href="https://github.com/piharpi/jekyll-klise" target="_blank" rel="noreferrer noopener" >klisé</a > theme on <a href="https://jekyllrb.com" target="_blank" rel="noreferrer noopener" >jekyll</a > </small> </footer> <script src="/assets/js/main.js" defer="defer"></script> <script src="/assets/js/galite.js"></script> <script> var galite = galite || {}; galite.UA = "G-EPC1XQKFYJ"; </script> </div> </body> </html>
